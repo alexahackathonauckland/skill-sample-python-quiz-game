@@ -54,7 +54,7 @@ def get_question_without_ordinal(attr, item):
 def get_question(counter, question, right, wrong1, wrong2):
     """Return response text for nth question to the user."""
     return (
-        "Question {}. {} A: {} B: {} C: {}").format(
+        "Question {}. {} A. {} B. {} C. {}").format(
         counter,
         question,
         right,
