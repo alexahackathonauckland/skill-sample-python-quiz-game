@@ -57,21 +57,6 @@ def get_card_title(item):
     return item["state"]
 
 
-def get_image(ht, wd, label):
-    """Get flag image with specified height, width and state abbr as label."""
-    return data.IMG_PATH.format(str(ht), str(wd), label)
-
-
-def get_small_image(item):
-    """Get state flag small image (720x400)."""
-    return get_image(720, 400, item['abbreviation'])
-
-
-def get_large_image(item):
-    """Get state flag large image (1200x800)."""
-    return get_image(1200, 800, item['abbreviation'])
-
-
 def get_speech_description(item):
     """Return state information in well formatted text."""
     return data.SPEECH_DESC.format(
@@ -167,14 +152,6 @@ def ask_question(handler_input):
     return get_question(attr["counter"], question, attr["right"], translate(challange['w1']), translate(challange['w2'])
 
 
-def get_speechcon(correct_answer):
-    """Return speechcon corresponding to the boolean answer correctness."""
-    text = ("<say-as interpret-as='interjection'>{} !"
-            "</say-as><break strength='strong'/>")
-    if correct_answer:
-        return text.format(random.choice(data.CORRECT_SPEECHCONS))
-    else:
-        return text.format(random.choice(data.WRONG_SPEECHCONS))
 
 
 def get_multiple_choice_answers(item, attr, states_list):
@@ -190,23 +167,6 @@ def get_multiple_choice_answers(item, attr, states_list):
 
     random.shuffle(answers_list)
     return answers_list
-
-
-def get_item(slots, states_list):
-    """Get matching data object from slot value."""
-    item = []
-    resolved_slot = None
-    for _, slot in six.iteritems(slots):
-        if slot.value is not None:
-            resolved_slot = slot.value
-            for state in states_list:
-                for _, v in six.iteritems(state):
-                    if v.lower() == slot.value.lower():
-                        item.append(state)
-            if len(item) > 0:
-                return item[0], True
-    else:
-        return resolved_slot, False
 
 
 def compare_token_or_slots(handler_input, value):
