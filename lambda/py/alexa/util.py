@@ -37,20 +37,6 @@ def get_card_description(item):
     return text
 
 
-def supports_display(handler_input):
-    # type: (HandlerInput) -> bool
-    """Check if display is supported by the skill."""
-    try:
-        if hasattr(
-                handler_input.request_envelope.context.system.device.
-                        supported_interfaces, 'display'):
-            return (
-                    handler_input.request_envelope.context.system.device.
-                    supported_interfaces.display is not None)
-    except:
-        return False
-
-
 def get_bad_answer(item):
     """Return response text for incorrect answer."""
     return "{} {}".format(data.BAD_ANSWER.format(item), data.HELP_MESSAGE)
@@ -116,12 +102,18 @@ def get_question_without_ordinal(attr, item):
         __get_attr_for_speech(attr), item["state"])
 
 
-def get_question(counter, attr, item):
+def get_question(counter, question, right, wrong1, wrong2):
     """Return response text for nth question to the user."""
+
+    # TODO: Randomize order of choices
+
     return (
-        "Here is your {} question. {}").format(
-        get_ordinal_indicator(counter),
-        get_question_without_ordinal(attr, item))
+        "Question {}. {}? A: {} B: {} C: {}").format(
+        counter,
+        question,
+        right,
+        wrong1,
+        wrong2)
 
 
 def get_answer(attr, item):
@@ -138,18 +130,23 @@ def get_answer(attr, item):
 def ask_question(handler_input):
     # (HandlerInput) -> None
     """Get a random state and property, return question about it."""
-    random_state = get_random_state(data.STATES_LIST)
-    random_property = get_random_state_property()
-
     attr = handler_input.attributes_manager.session_attributes
 
-    attr["quiz_item"] = random_state
-    attr["quiz_attr"] = random_property
+    # TODO: Pick a question based on attr["category"]
+
+    #random_state = get_random_state(data.STATES_LIST)
+    #random_property = get_random_state_property()
+
+    attr["question"] = "What animal eats bananas and climbs the tree?"
+
+    attr["right"] = "<voice name=\"Mizuki\"> <lang xml:lang=\"ja-JP\"> Monki </lang> </voice>"
+    attr["wrong1"] = "<voice name=\"Mizuki\"> <lang xml:lang=\"ja-JP\"> Ushi </lang> </voice>"
+    attr["wrong2"] = "<voice name=\"Mizuki\"> <lang xml:lang=\"ja-JP\"> Buta </lang> </voice>"
     attr["counter"] += 1
 
     handler_input.attributes_manager.session_attributes = attr
 
-    return get_question(attr["counter"], random_property, random_state)
+    return get_question(attr["counter"], attr["question"], attr["right"], attr["wrong1"], attr["wrong2"])
 
 
 def get_speechcon(correct_answer):
@@ -211,4 +208,5 @@ def compare_slots(slots, value):
             return slot.value.lower() == value.lower()
     else:
         return False
+
 

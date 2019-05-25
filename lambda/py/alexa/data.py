@@ -256,8 +256,7 @@ SKILL_TITLE = "United States Quiz Game"
 
 WELCOME_MESSAGE = ("Sure, what would you liked to be quizzed on? Select from the following: Greetings, Animals, Fruits, or Colours")
 
-START_QUIZ_MESSAGE = ("OK.  I will ask you 10 questions about the "
-                      "United States. ")
+START_QUIZ_MESSAGE = ("I'll give you five questions.")
 
 EXIT_SKILL_MESSAGE = ("Thank you for playing the United States Quiz Game!  "
                       "Let's play again soon!")
@@ -285,8 +284,6 @@ WRONG_SPEECHCONS = ['Argh', 'Aw man', 'Blarg', 'Blast', 'Boo', 'Bummer',
 IMG_PATH = (
     "https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/"
     "alexa-skills-kit/tutorials/quiz-game/state_flag/{}x{}/{}._TTH_.png")
-
-USE_CARDS_FLAG = True
 
 MAX_QUESTIONS = 10
 

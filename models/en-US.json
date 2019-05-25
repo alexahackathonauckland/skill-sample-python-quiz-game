@@ -52,7 +52,6 @@
                         }
                     ],
                     "samples": [
-                        "{letter}",
                         "{state}",
                         "{capital}",
                         "{statehood_year}",
@@ -73,6 +72,19 @@
                         "{statehood_year} information",
                         "{statehood_order} information",
                         "{abbreviation} information"
+                    ]
+                },
+                {
+                    "name": "CategoryIntent",
+                    "slots": [
+                        {
+                            "name": "category",
+                            "type": "CATEGORY"
+                        }
+                    ],
+                    "samples": [
+                        "{category}",
+                        "let's go with {category}"
                     ]
                 },
                 {
@@ -133,16 +145,6 @@
                 },
                 {
                     "name": "AMAZON.FallbackIntent",
-                    "samples": []
-                },
-                {
-                    "name": "CategoryIntent",
-                    "slots": [
-                        {
-                            "name": "category",
-                            "type": "CATEGORY"
-                        }
-                    ],
                     "samples": []
                 }
             ],
@@ -428,27 +430,6 @@
                     ]
                 }
             ]
-        },
-        "dialog": {
-            "intents": [
-                {
-                    "name": "CategoryIntent",
-                    "confirmationRequired": false,
-                    "prompts": {},
-                    "slots": [
-                        {
-                            "name": "category",
-                            "type": "CATEGORY",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": ""
-                            }
-                        }
-                    ]
-                }
-            ],
-            "delegationStrategy": "ALWAYS"
         }
     }
 }
