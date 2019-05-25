@@ -57,6 +57,21 @@ def get_card_title(item):
     return item["state"]
 
 
+def get_image(ht, wd, label):
+    """Get flag image with specified height, width and state abbr as label."""
+    return data.IMG_PATH.format(str(ht), str(wd), label)
+
+
+def get_small_image(item):
+    """Get state flag small image (720x400)."""
+    return get_image(720, 400, item['abbreviation'])
+
+
+def get_large_image(item):
+    """Get state flag large image (1200x800)."""
+    return get_image(1200, 800, item['abbreviation'])
+
+
 def get_speech_description(item):
     """Return state information in well formatted text."""
     return data.SPEECH_DESC.format(
@@ -89,9 +104,6 @@ def get_question_without_ordinal(attr, item):
 
 def get_question(counter, question, right, wrong1, wrong2):
     """Return response text for nth question to the user."""
-
-    # TODO: Randomize order of choices
-
     return (
         "Question {}. {}? A: {} B: {} C: {}").format(
         counter,
@@ -112,26 +124,57 @@ def get_answer(attr, item):
             __get_attr_for_speech(attr), item["state"], item[attr.lower()])
 
 
+def translate(text):
+    """Translate text to given language."""
+    # Example of text:
+    #     "which of the following animals is the `Mottomo hayai`?"
+    # exemple of output:
+    #     "which of the following animals is the <voice name=\"Mizuki\"><lang xml:lang=\"ja-JP\">Mottomo hayai</lang></voice> ?"
+    if '`' not in text:
+        return text
+    bg, middle, end = text.split('`')
+    return f"{bg}<voice name=\"Mizuki\"><lang xml:lang=\"ja-JP\">{middle}</lang></voice> {end}"
+
+
+def get_random_question(attr):
+    """Get a random question not picked."""
+    attr = handler_input.attributes_manager.session_attributes
+        
+    # Randomize here!
+    for i, challange in enumerate(data.CHALLANGES):
+        if challange['category'].lower() == attr['category'] and i not in attr['done_questions']:
+            return challange, i
+    raise RuntimeError('Unable to get question')
+
+
 def ask_question(handler_input):
     # (HandlerInput) -> None
     """Get a random state and property, return question about it."""
     attr = handler_input.attributes_manager.session_attributes
+    # FIXME: find a better way.
+    if 'done_questions' not in attr:
+        attr['done_questions'] = []
+    challange, i = get_randon_question(attr)
 
-    # TODO: Pick a question based on attr["category"]
-
-    #random_state = get_random_state(data.STATES_LIST)
-    #random_property = get_random_state_property()
-
-    attr["question"] = "Which of the following animals is the <voice name=\"Mizuki\"><lang xml:lang=\"ja-JP\">mottomo hayai</lang></voice>?"
-
-    attr["right"] = "<voice name=\"Mizuki\"> <lang xml:lang=\"ja-JP\"> Monki </lang> </voice>"
-    attr["wrong1"] = "<voice name=\"Mizuki\"> <lang xml:lang=\"ja-JP\"> Ushi </lang> </voice>"
-    attr["wrong2"] = "<voice name=\"Mizuki\"> <lang xml:lang=\"ja-JP\"> Buta </lang> </voice>"
+    attr['done_questions'].append(i)
+    question = translate(challange['question'])
+    attr["question"] = question
+    attr["right"] = translate(challange['answer'])
     attr["counter"] += 1
 
     handler_input.attributes_manager.session_attributes = attr
 
-    return get_question(attr["counter"], attr["question"], attr["right"], attr["wrong1"], attr["wrong2"])
+    return get_question(attr["counter"], question, attr["right"], translate(challange['w1']), translate(challange['w2'])
+
+
+def get_speechcon(correct_answer):
+    """Return speechcon corresponding to the boolean answer correctness."""
+    text = ("<say-as interpret-as='interjection'>{} !"
+            "</say-as><break strength='strong'/>")
+    if correct_answer:
+        return text.format(random.choice(data.CORRECT_SPEECHCONS))
+    else:
+        return text.format(random.choice(data.WRONG_SPEECHCONS))
 
 
 def get_multiple_choice_answers(item, attr, states_list):
