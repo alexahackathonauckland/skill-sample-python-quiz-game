@@ -124,6 +124,7 @@ class QuizHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         logger.info("In QuizHandler")
         attr = handler_input.attributes_manager.session_attributes
+        attr["state"] = "QUIZ"
         logger.info(handler_input.request_envelope.request.intent.slots)
         attr["category"] = handler_input.request_envelope.request.intent.slots["category"].value
         attr["counter"] = 0
@@ -195,20 +196,22 @@ class QuizAnswerHandler(AbstractRequestHandler):
         attr = handler_input.attributes_manager.session_attributes
         response_builder = handler_input.response_builder
 
-        item = attr["quiz_item"]
-        item_attr = attr["quiz_attr"]
-        is_ans_correct = util.compare_token_or_slots(
-            handler_input=handler_input,
-            value=item[item_attr])
+        answer = handler_input.request_envelope.request.intent.slots["letter"].value
+        is_ans_correct = (answer == "a")
+        #item = attr["quiz_item"]
+        #item_attr = attr["quiz_attr"]
+        #is_ans_correct = util.compare_token_or_slots(
+        #    handler_input=handler_input,
+        #    value=item[item_attr])
 
         if is_ans_correct:
             speech = util.get_speechcon(correct_answer=True)
             attr["quiz_score"] += 1
             handler_input.attributes_manager.session_attributes = attr
         else:
-            speech = util.get_speechcon(correct_answer=False)
+            speech = "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/>"
 
-        speech += util.get_answer(item_attr, item)
+        #speech += util.get_answer(item_attr, item)
 
         if attr['counter'] < data.MAX_QUESTIONS:
             # Ask another question
@@ -219,8 +222,8 @@ class QuizAnswerHandler(AbstractRequestHandler):
             reprompt = question
 
             # Update item and item_attr for next question
-            item = attr["quiz_item"]
-            item_attr = attr["quiz_attr"]
+            #item = attr["quiz_item"]
+            #item_attr = attr["quiz_attr"]
 
             return response_builder.speak(speech).ask(reprompt).response
         else:

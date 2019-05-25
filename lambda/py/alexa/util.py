@@ -137,7 +137,7 @@ def ask_question(handler_input):
     #random_state = get_random_state(data.STATES_LIST)
     #random_property = get_random_state_property()
 
-    attr["question"] = "What animal eats bananas and climbs the tree?"
+    attr["question"] = "Which of the following animals is the <voice name=\"Mizuki\"><lang xml:lang=\"ja-JP\">mottomo hayai</lang></voice>?"
 
     attr["right"] = "<voice name=\"Mizuki\"> <lang xml:lang=\"ja-JP\"> Monki </lang> </voice>"
     attr["wrong1"] = "<voice name=\"Mizuki\"> <lang xml:lang=\"ja-JP\"> Ushi </lang> </voice>"
