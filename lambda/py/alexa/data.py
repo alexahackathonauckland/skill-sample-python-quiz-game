@@ -5,7 +5,7 @@ CHALLANGES = [
         'category': 'Animal',
         'answer': '`inu`',
         'question': 'Which option is dog?',
-        'w1': '`neko`'
+        'w1': '`neko`',
         'w2': '`buta`'
     },
     {
@@ -70,7 +70,7 @@ CHALLANGES = [
         'question': 'Which fruit is used as a bum emoji?',
         'w2': '`Cherī`',
         'w1': '`Painappuru`',
-    }
+    },
     {
         'category': 'Fruits',
         'answer': '`banana`',
@@ -403,4 +403,5 @@ SPEECH_DESC = (
     "{}</say-as>.  I've added {} to "
     "your Alexa app.  Which other state or capital would you like to "
     "know about? ")
+
 
