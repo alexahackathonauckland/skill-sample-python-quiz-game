@@ -54,7 +54,7 @@ def get_question_without_ordinal(attr, item):
 def get_question(counter, question, right, wrong1, wrong2):
     """Return response text for nth question to the user."""
     return (
-        "Question {}. {}? A: {} B: {} C: {}").format(
+        "Question {}. {} A: {} B: {} C: {}").format(
         counter,
         question,
         right,
@@ -87,7 +87,7 @@ def get_random_question(attr):
     """Get a random question not picked."""
     # Randomize here!
     for i, challange in enumerate(data.CHALLANGES):
-        if challange['category'].lower() == attr['category'] and i not in attr['done_questions']:
+        if challange['category'].lower() == attr['category'].lower() and i not in attr['done_questions']:
             return challange, i
     raise RuntimeError(f'Unable to get question. attr: {attr}')
 

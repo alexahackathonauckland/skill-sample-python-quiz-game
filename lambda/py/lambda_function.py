@@ -125,7 +125,10 @@ class QuizHandler(AbstractRequestHandler):
         logger.info("In QuizHandler")
         attr = handler_input.attributes_manager.session_attributes
         attr["state"] = "QUIZ"
-        attr["category"] = handler_input.request_envelope.request.intent.slots["category"].value
+        logger.info(handler_input.request_envelope.request.intent.slots["category"])
+        #category = handler_input.request_envelope.request.intent.slots["category"].value
+        category = handler_input.request_envelope.request.intent.slots["category"].resolutions.resolutions_per_authority[0].values[0].value.id
+        attr["category"] = category
         attr["counter"] = 0
         attr["quiz_score"] = 0
 
