@@ -57,7 +57,7 @@ def get_question(counter, question, right, wrong1, wrong2):
 
 
     return (
-        "Question {}. {} A: {} B: {} C: {}").format(
+        "Question {}. {} A. {} B. {} C. {}").format(
         counter,
         question,
         right,
