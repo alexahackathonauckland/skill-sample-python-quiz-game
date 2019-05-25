@@ -137,40 +137,6 @@ class QuizHandler(AbstractRequestHandler):
         return response_builder.response
 
 
-class DefinitionHandler(AbstractRequestHandler):
-    """Handler for providing states info to the users.
-
-    This handler is triggered when the QUIZ is not started and the
-    user asks for a specific state, capital, statehood order, statehood
-    year or abbreviation. Similar to the quiz handler, the information
-    is added to the Card or the RenderTemplate after checking if that
-    is supported.
-    """
-    def can_handle(self, handler_input):
-        # type: (HandlerInput) -> bool
-        attr = handler_input.attributes_manager.session_attributes
-        return (is_intent_name("AnswerIntent")(handler_input) and
-                attr.get("state") != "QUIZ")
-
-    def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
-        logger.info("In DefinitionHandler")
-        response_builder = handler_input.response_builder
-        item, is_resolved = util.get_item(
-            slots=handler_input.request_envelope.request.intent.slots,
-            states_list=data.STATES_LIST)
-
-        if is_resolved:
-            response_builder.speak(
-                util.get_speech_description(item)).ask(data.REPROMPT_SPEECH)
-
-        else:
-            response_builder.speak(
-                util.get_bad_answer(item)).ask(util.get_bad_answer(item))
-
-        return response_builder.response
-
-
 class QuizAnswerHandler(AbstractRequestHandler):
     """Handler for answering the quiz.
 
@@ -353,7 +319,6 @@ class ResponseLogger(AbstractResponseInterceptor):
 # Add all request handlers to the skill.
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(QuizHandler())
-sb.add_request_handler(DefinitionHandler())
 sb.add_request_handler(QuizAnswerHandler())
 sb.add_request_handler(QuizAnswerElementSelectedHandler())
 sb.add_request_handler(RepeatHandler())
