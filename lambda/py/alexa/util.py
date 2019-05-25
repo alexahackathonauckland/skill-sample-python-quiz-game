@@ -14,33 +14,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
-def get_random_state(states_list):
-    """Return a random value from the list of states."""
-    return random.choice(states_list)
-
-
-def state_properties():
-    """Return the list of state properties."""
-    val = ["abbreviation", "capital", "statehood_year",
-           "statehood_order"]
-    return val
-
-
-def get_random_state_property():
-    """Return a random state property."""
-    return random.choice(state_properties())
-
-
-def get_card_description(item):
-    """Return the description shown on card in Alexa response."""
-    text = "State Name: {}\n".format(item['state'])
-    text += "State Capital: {}\n".format(item['capital'])
-    text += "Statehood Year: {}\n".format(item['statehood_year'])
-    text += "Statehood Order: {}\n".format(item['statehood_order'])
-    text += "Abbreviation: {}\n".format(item['abbreviation'])
-    return text
-
-
 def get_bad_answer(item):
     """Return response text for incorrect answer."""
     return "{} {}".format(data.BAD_ANSWER.format(item), data.HELP_MESSAGE)
@@ -54,19 +27,6 @@ def get_current_score(score, counter):
 def get_final_score(score, counter):
     """Return the response text for final quiz score of the user."""
     return data.SCORE.format("final", score, counter)
-
-
-def get_card_title(item):
-    """Return state name as card title."""
-    return item["state"]
-
-
-def get_speech_description(item):
-    """Return state information in well formatted text."""
-    return data.SPEECH_DESC.format(
-        item['state'], item['statehood_order'], item['statehood_year'],
-        item['state'], item['capital'], item['state'], item['abbreviation'],
-        item['state'])
 
 
 def get_ordinal_indicator(counter):
@@ -120,7 +80,7 @@ def translate(text):
     # exemple of output:
     #     "which of the following animals is the <voice name=\"Mizuki\"><lang xml:lang=\"ja-JP\">Mottomo hayai</lang></voice> ?"
     logger.info("In translate()")
-    return re.sub(r'\`(.+)\`', r'<voice name="Mizuki"><lang xml:lang="ja-JP">\1</lang></voice>', text)
+    return re.sub(r'\`([^\`]+)\`', r'<voice name="Mizuki"><lang xml:lang="ja-JP">\1</lang></voice>', text)
 
 
 def get_random_question(attr):
@@ -150,21 +110,6 @@ def ask_question(handler_input):
     handler_input.attributes_manager.session_attributes = attr
 
     return get_question(attr["counter"], question, attr["right"], translate(challange['w1']), translate(challange['w2']))
-
-
-def get_multiple_choice_answers(item, attr, states_list):
-    """Return multiple choices for the display to show."""
-    answers_list = [item[attr]]
-    # Insert the correct answer first
-
-    while len(answers_list) < 3:
-        state = random.choice(states_list)
-
-        if not state[attr] in answers_list:
-            answers_list.append(state[attr])
-
-    random.shuffle(answers_list)
-    return answers_list
 
 
 def compare_token_or_slots(handler_input, value):

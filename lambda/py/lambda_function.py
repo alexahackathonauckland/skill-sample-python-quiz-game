@@ -178,8 +178,6 @@ class QuizAnswerHandler(AbstractRequestHandler):
         else:
             speech = "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/>"
 
-        #speech += util.get_answer(item_attr, item)
-
         if attr['counter'] < data.MAX_QUESTIONS:
             # Ask another question
             speech += util.get_current_score(
