@@ -254,10 +254,7 @@ STATES_LIST = [
 
 SKILL_TITLE = "United States Quiz Game"
 
-WELCOME_MESSAGE = ("Welcome to the United States Quiz Game!  "
-                   "You can ask me about any of the "
-                   "fifty states and their capitals, or you can ask me to "
-                   "start a quiz.  What would you like to do? ")
+WELCOME_MESSAGE = ("Sure, what would you liked to be quizzed on? Select from the following: Greetings, Animals, Fruits, or Colours")
 
 START_QUIZ_MESSAGE = ("OK.  I will ask you 10 questions about the "
                       "United States. ")
@@ -310,3 +307,4 @@ SPEECH_DESC = (
     "{}</say-as>.  I've added {} to "
     "your Alexa app.  Which other state or capital would you like to "
     "know about? ")
+

@@ -470,3 +470,4 @@ sb.add_global_response_interceptor(ResponseLogger())
 
 # Expose the lambda handler to register in AWS Lambda.
 lambda_handler = sb.lambda_handler()
+
