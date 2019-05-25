@@ -95,6 +95,15 @@ class ExitIntentHandler(AbstractRequestHandler):
         return handler_input.response_builder.response
 
 
+class CategoryIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name("CategoryIntent")(handler_input)
+
+    def handle(self, handler_input):
+        handler_input.response_builder.speak("I think you are trying to select a category")
+        return handler_input.response_builder.response
+
+
 class QuizHandler(AbstractRequestHandler):
     """Handler for starting a quiz.
 
@@ -459,6 +468,7 @@ sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(ExitIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
 sb.add_request_handler(FallbackIntentHandler())
+sb.add_request_handler(CategoryIntentHandler())
 
 # Add exception handler to the skill.
 sb.add_exception_handler(CatchAllExceptionHandler())
