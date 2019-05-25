@@ -60,7 +60,7 @@ CHALLANGES = [
     {
         'category': 'Fruits',
         'answer': 'strawberry',
-        'question': 'The inside of this fruit is `Aka`',
+        'question': 'The inside of this fruit is `ah ka`',
         'w2': 'mango',
         'w1': 'apple',
     },
@@ -87,7 +87,7 @@ CHALLANGES = [
     },
     {
         'category': 'Colours',
-        'answer': '`Aka`',
+        'answer': '`ah ka`',
         'question': 'Newton discovered `Jūryoku` when an apple fell on his head. What colour was the `Ringo`?',
         'w2': '`Murasakino`',
         'w1': '`Shiro`',
@@ -115,7 +115,7 @@ CHALLANGES = [
     },
     {
         'category': 'Colours',
-        'answer': '`Aka`',
+        'answer': '`ah ka`',
         'question': "What's Donald Trump's `Sukinairo`?",
         'w2': '`Midori`',
         'w1': '`Orenji`',
