@@ -37,7 +37,15 @@
                     ],
                     "samples": [
                         "{letter}",
-                        "let's go with {letter}"
+                        "{letter} is my final answer",
+                        "{letter} I guess",
+                        "how about {letter}",
+                        "I'm going to guess {letter}",
+                        "I'm going to go with {letter}",
+                        "let's go with {letter}",
+                        "maybe {letter}",
+                        "my answer is {letter}",
+                        "my final answer is {letter}"
                     ]
                 },
                 {
