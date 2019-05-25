@@ -57,21 +57,6 @@ def get_card_title(item):
     return item["state"]
 
 
-def get_image(ht, wd, label):
-    """Get flag image with specified height, width and state abbr as label."""
-    return data.IMG_PATH.format(str(ht), str(wd), label)
-
-
-def get_small_image(item):
-    """Get state flag small image (720x400)."""
-    return get_image(720, 400, item['abbreviation'])
-
-
-def get_large_image(item):
-    """Get state flag large image (1200x800)."""
-    return get_image(1200, 800, item['abbreviation'])
-
-
 def get_speech_description(item):
     """Return state information in well formatted text."""
     return data.SPEECH_DESC.format(
@@ -147,16 +132,6 @@ def ask_question(handler_input):
     handler_input.attributes_manager.session_attributes = attr
 
     return get_question(attr["counter"], attr["question"], attr["right"], attr["wrong1"], attr["wrong2"])
-
-
-def get_speechcon(correct_answer):
-    """Return speechcon corresponding to the boolean answer correctness."""
-    text = ("<say-as interpret-as='interjection'>{} !"
-            "</say-as><break strength='strong'/>")
-    if correct_answer:
-        return text.format(random.choice(data.CORRECT_SPEECHCONS))
-    else:
-        return text.format(random.choice(data.WRONG_SPEECHCONS))
 
 
 def get_multiple_choice_answers(item, attr, states_list):

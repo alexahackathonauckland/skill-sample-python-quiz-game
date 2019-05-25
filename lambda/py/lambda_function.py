@@ -19,7 +19,7 @@ from ask_sdk_core.response_helper import (
     get_plain_text_content, get_rich_text_content)
 
 from ask_sdk_model.interfaces.display import (
-    ImageInstance, Image, RenderTemplateDirective, ListTemplate1,
+    RenderTemplateDirective, ListTemplate1,
     BackButtonBehavior, ListItem, BodyTemplate2, BodyTemplate1)
 from ask_sdk_model import ui, Response
 
@@ -125,7 +125,6 @@ class QuizHandler(AbstractRequestHandler):
         logger.info("In QuizHandler")
         attr = handler_input.attributes_manager.session_attributes
         attr["state"] = "QUIZ"
-        logger.info(handler_input.request_envelope.request.intent.slots)
         attr["category"] = handler_input.request_envelope.request.intent.slots["category"].value
         attr["counter"] = 0
         attr["quiz_score"] = 0
@@ -196,8 +195,10 @@ class QuizAnswerHandler(AbstractRequestHandler):
         attr = handler_input.attributes_manager.session_attributes
         response_builder = handler_input.response_builder
 
-        answer = handler_input.request_envelope.request.intent.slots["letter"].value
-        is_ans_correct = (answer == "a")
+        logger.info(handler_input.request_envelope.request.intent.slots["letter"])
+        logger.info(handler_input.request_envelope.request.intent.slots["letter"].resolutions)
+        answer = handler_input.request_envelope.request.intent.slots["letter"].resolutions.resolutions_per_authority[0].values[0].value.id
+        is_ans_correct = (answer == "A")
         #item = attr["quiz_item"]
         #item_attr = attr["quiz_attr"]
         #is_ans_correct = util.compare_token_or_slots(
@@ -205,7 +206,7 @@ class QuizAnswerHandler(AbstractRequestHandler):
         #    value=item[item_attr])
 
         if is_ans_correct:
-            speech = util.get_speechcon(correct_answer=True)
+            speech = "<audio src='soundbank://soundlibrary/human/amzn_sfx_crowd_applause_01'/>"
             attr["quiz_score"] += 1
             handler_input.attributes_manager.session_attributes = attr
         else:

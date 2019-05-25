@@ -254,7 +254,7 @@ STATES_LIST = [
 
 SKILL_TITLE = "United States Quiz Game"
 
-WELCOME_MESSAGE = ("Sure, what would you liked to be quizzed on? Select from the following: Greetings, Animals, Fruits, or Colours")
+WELCOME_MESSAGE = ("Sure, what would you liked to be quizzed on? Select from the following: Animals, Fruits, or Colours")
 
 START_QUIZ_MESSAGE = ("I'll give you five questions.")
 
@@ -269,23 +269,7 @@ HELP_MESSAGE = ("I know lots of things about the United States.  "
                 "You can also test your knowledge by asking me to start "
                 "a quiz.  What would you like to do? ")
 
-CORRECT_SPEECHCONS = ['Booya', 'All righty', 'Bam', 'Bazinga', 'Bingo',
-                      'Boom', 'Bravo', 'Cha Ching', 'Cheers', 'Dynomite',
-                      'Hip hip hooray', 'Hurrah', 'Hurray', 'Huzzah',
-                      'Oh dear.  Just kidding.  Hurray', 'Kaboom', 'Kaching',
-                      'Oh snap', 'Phew', 'Righto', 'Way to go', 'Well done',
-                      'Whee', 'Woo hoo', 'Yay', 'Wowza', 'Yowsa']
-
-WRONG_SPEECHCONS = ['Argh', 'Aw man', 'Blarg', 'Blast', 'Boo', 'Bummer',
-                    'Darn', "D'oh", 'Dun dun dun', 'Eek', 'Honk', 'Le sigh',
-                    'Mamma mia', 'Oh boy', 'Oh dear', 'Oof', 'Ouch', 'Ruh roh',
-                    'Shucks', 'Uh oh', 'Wah wah', 'Whoops a daisy', 'Yikes']
-
-IMG_PATH = (
-    "https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/"
-    "alexa-skills-kit/tutorials/quiz-game/state_flag/{}x{}/{}._TTH_.png")
-
-MAX_QUESTIONS = 10
+MAX_QUESTIONS = 5
 
 BAD_ANSWER = (
     "I'm sorry. {} is not something I know very much about in this skill.")
