@@ -89,7 +89,7 @@ def get_random_question(attr):
     for i, challange in enumerate(data.CHALLANGES):
         if challange['category'].lower() == attr['category'].lower() and i not in attr['done_questions']:
             return challange, i
-    raise RuntimeError('Unable to get question for requested category %s; %s questions are done' % (attr['category'], len(attr['done_questions'])))
+    raise RuntimeError(f'Unable to get question. attr: {attr}')
 
 
 def ask_question(handler_input):
