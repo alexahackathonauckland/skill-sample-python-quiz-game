@@ -53,6 +53,9 @@ def get_question_without_ordinal(attr, item):
 
 def get_question(counter, question, right, wrong1, wrong2):
     """Return response text for nth question to the user."""
+
+
+
     return (
         "Question {}. {} A: {} B: {} C: {}").format(
         counter,
@@ -104,12 +107,23 @@ def ask_question(handler_input):
     attr['done_questions'].append(i)
     question = translate(challange['question'])
     attr["question"] = question
-    attr["right"] = translate(challange['answer'])
     attr["counter"] += 1
+
+    answers_list = [challange["answer"], challange["w1"], challange["w2"]]
+    random.shuffle(answers_list)
+
+    for j, answer in enumerate(answers_list):
+        if challange["answer"] == answer:
+            if j == 1:
+                attr["right"] = "A"
+            elif j == 2:
+                attr["right"] = "B"
+            else:
+                attr["right"] = "C"
 
     handler_input.attributes_manager.session_attributes = attr
 
-    return get_question(attr["counter"], question, attr["right"], translate(challange['w1']), translate(challange['w2']))
+    return get_question(attr["counter"], question, translate(answers_list[0]), translate(answers_list[1]), translate(answers_list[2]))
 
 
 def compare_token_or_slots(handler_input, value):
@@ -129,6 +143,7 @@ def compare_slots(slots, value):
             return slot.value.lower() == value.lower()
     else:
         return False
+
 
 
 

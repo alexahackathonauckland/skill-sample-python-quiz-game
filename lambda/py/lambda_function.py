@@ -167,12 +167,7 @@ class QuizAnswerHandler(AbstractRequestHandler):
         logger.info(handler_input.request_envelope.request.intent.slots["letter"])
         logger.info(handler_input.request_envelope.request.intent.slots["letter"].resolutions)
         answer = handler_input.request_envelope.request.intent.slots["letter"].resolutions.resolutions_per_authority[0].values[0].value.id
-        is_ans_correct = (answer == "A")
-        #item = attr["quiz_item"]
-        #item_attr = attr["quiz_attr"]
-        #is_ans_correct = util.compare_token_or_slots(
-        #    handler_input=handler_input,
-        #    value=item[item_attr])
+        is_ans_correct = (answer == attr["right"])
 
         if is_ans_correct:
             speech = "<audio src='soundbank://soundlibrary/human/amzn_sfx_crowd_applause_01'/>"

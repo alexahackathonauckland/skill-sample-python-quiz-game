@@ -1,0 +1,198 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "my japanese quiz",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PauseIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StartOverIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.RepeatIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AnswerIntent",
+                    "slots": [
+                        {
+                            "name": "letter",
+                            "type": "LETTER"
+                        }
+                    ],
+                    "samples": [
+                        "{letter}",
+                        "{letter} is my final answer",
+                        "{letter} I guess",
+                        "how about {letter}",
+                        "I'm going to guess {letter}",
+                        "I'm going to go with {letter}",
+                        "let's go with {letter}",
+                        "maybe {letter}",
+                        "my answer is {letter}",
+                        "my final answer is {letter}"
+                    ]
+                },
+                {
+                    "name": "CategoryIntent",
+                    "slots": [
+                        {
+                            "name": "category",
+                            "type": "CATEGORY"
+                        }
+                    ],
+                    "samples": [
+                        "{category}",
+                        "let's go with {category}"
+                    ]
+                },
+                {
+                    "name": "QuizIntent",
+                    "slots": [],
+                    "samples": [
+                        "start a quiz",
+                        "start a quiz game",
+                        "and start a quiz",
+                        "and quiz me",
+                        "for a quiz",
+                        "a quiz"
+                    ]
+                },
+                {
+                    "name": "AMAZON.MoreIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateSettingsIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NextIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PageDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PreviousIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollRightIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollDownIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollLeftIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ScrollUpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                }
+            ],
+            "types": [
+                {
+                    "name": "CATEGORY",
+                    "values": [
+                        {
+                            "id": "COLOURS",
+                            "name": {
+                                "value": "colours",
+                                "synonyms": [
+                                    "colour"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "FRUITS",
+                            "name": {
+                                "value": "fruits",
+                                "synonyms": [
+                                    "fruit"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "ANIMALS",
+                            "name": {
+                                "value": "animals",
+                                "synonyms": [
+                                    "animal"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "LETTER",
+                    "values": [
+                        {
+                            "id": "A",
+                            "name": {
+                                "value": "A",
+                                "synonyms": [
+                                    "ay",
+                                    "a"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "B",
+                            "name": {
+                                "value": "B",
+                                "synonyms": [
+                                    "bee",
+                                    "be",
+                                    "b"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "C",
+                            "name": {
+                                "value": "C",
+                                "synonyms": [
+                                    "see",
+                                    "sea",
+                                    "c"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
