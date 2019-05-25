@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
 
 """Utility module to generate text for commonly used responses."""
-
+import re
+import logging
 import random
 import six
 from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_core.utils import is_request_type
 
 from . import data
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 def get_random_state(states_list):
@@ -115,21 +119,17 @@ def translate(text):
     #     "which of the following animals is the `Mottomo hayai`?"
     # exemple of output:
     #     "which of the following animals is the <voice name=\"Mizuki\"><lang xml:lang=\"ja-JP\">Mottomo hayai</lang></voice> ?"
-    if '`' not in text:
-        return text
-    bg, middle, end = text.split('`')
-    return f"{bg}<voice name=\"Mizuki\"><lang xml:lang=\"ja-JP\">{middle}</lang></voice> {end}"
+    logger.info("In translate()")
+    return re.sub(r'\`(.+)\`', r'<voice name="Mizuki"><lang xml:lang="ja-JP">\1</lang></voice>', text)
 
 
 def get_random_question(attr):
     """Get a random question not picked."""
-    attr = handler_input.attributes_manager.session_attributes
-        
     # Randomize here!
     for i, challange in enumerate(data.CHALLANGES):
         if challange['category'].lower() == attr['category'] and i not in attr['done_questions']:
             return challange, i
-    raise RuntimeError('Unable to get question')
+    raise RuntimeError('Unable to get question for requested category %s; %s questions are done' % (attr['category'], len(attr['done_questions'])))
 
 
 def ask_question(handler_input):
