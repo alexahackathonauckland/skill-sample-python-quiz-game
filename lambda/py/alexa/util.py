@@ -139,7 +139,7 @@ def ask_question(handler_input):
     # FIXME: find a better way.
     if 'done_questions' not in attr:
         attr['done_questions'] = []
-    challange, i = get_randon_question(attr)
+    challange, i = get_random_question(attr)
 
     attr['done_questions'].append(i)
     question = translate(challange['question'])
@@ -149,9 +149,7 @@ def ask_question(handler_input):
 
     handler_input.attributes_manager.session_attributes = attr
 
-    return get_question(attr["counter"], question, attr["right"], translate(challange['w1']), translate(challange['w2'])
-
-
+    return get_question(attr["counter"], question, attr["right"], translate(challange['w1']), translate(challange['w2']))
 
 
 def get_multiple_choice_answers(item, attr, states_list):
@@ -186,5 +184,6 @@ def compare_slots(slots, value):
             return slot.value.lower() == value.lower()
     else:
         return False
+
 
 
