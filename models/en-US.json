@@ -119,23 +119,30 @@
                     "name": "CATEGORY",
                     "values": [
                         {
+                            "id": "COLOURS",
                             "name": {
-                                "value": "colours"
+                                "value": "colours",
+                                "synonyms": [
+                                    "colour"
+                                ]
                             }
                         },
                         {
+                            "id": "FRUITS",
                             "name": {
-                                "value": "fruits"
+                                "value": "fruits",
+                                "synonyms": [
+                                    "fruit"
+                                ]
                             }
                         },
                         {
+                            "id": "ANIMALS",
                             "name": {
-                                "value": "greetings"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "animals"
+                                "value": "animals",
+                                "synonyms": [
+                                    "animal"
+                                ]
                             }
                         }
                     ]
@@ -144,18 +151,35 @@
                     "name": "LETTER",
                     "values": [
                         {
+                            "id": "A",
                             "name": {
-                                "value": "A"
+                                "value": "A",
+                                "synonyms": [
+                                    "ay",
+                                    "a"
+                                ]
                             }
                         },
                         {
+                            "id": "B",
                             "name": {
-                                "value": "B"
+                                "value": "B",
+                                "synonyms": [
+                                    "bee",
+                                    "be",
+                                    "b"
+                                ]
                             }
                         },
                         {
+                            "id": "C",
                             "name": {
-                                "value": "C"
+                                "value": "C",
+                                "synonyms": [
+                                    "see",
+                                    "sea",
+                                    "c"
+                                ]
                             }
                         }
                     ]
