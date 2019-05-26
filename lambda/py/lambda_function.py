@@ -38,7 +38,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for skill launch."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return is_request_type("LaunchRequest")(handler_input)
+        return is_request_type("LaunchRequest")(handler_input) or is_request_type("AMAZON.YesIntent")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
@@ -85,7 +85,8 @@ class ExitIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> bool
         return (is_intent_name("AMAZON.CancelIntent")(handler_input) or
                 is_intent_name("AMAZON.StopIntent")(handler_input) or
-                is_intent_name("AMAZON.PauseIntent")(handler_input))
+                is_intent_name("AMAZON.PauseIntent")(handler_input) or
+                is_request_type("AMAZON.NoIntent")(handler_input))
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response

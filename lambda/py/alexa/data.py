@@ -128,7 +128,7 @@ WELCOME_MESSAGE = ("Sure, what would you liked to be quizzed on? Select from the
 
 START_QUIZ_MESSAGE = ("I'll give you five questions.")
 
-EXIT_SKILL_MESSAGE = ("Thank you for playing! Quiz you later! Let's play again soon!")
+EXIT_SKILL_MESSAGE = ("Thank you for playing! Quiz you later! Would you like to play it again?")
 
 REPROMPT_SPEECH = "Which other state or capital would you like to know about?"
 

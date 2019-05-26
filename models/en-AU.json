@@ -120,6 +120,14 @@
                 {
                     "name": "AMAZON.FallbackIntent",
                     "samples": []
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
                 }
             ],
             "types": [
