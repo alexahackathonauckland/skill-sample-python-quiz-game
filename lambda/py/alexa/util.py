@@ -114,9 +114,9 @@ def ask_question(handler_input):
 
     for j, answer in enumerate(answers_list):
         if challange["answer"] == answer:
-            if j == 1:
+            if j == 0:
                 attr["right"] = "A"
-            elif j == 2:
+            elif j == 1:
                 attr["right"] = "B"
             else:
                 attr["right"] = "C"
@@ -143,6 +143,7 @@ def compare_slots(slots, value):
             return slot.value.lower() == value.lower()
     else:
         return False
+
 
 
 
