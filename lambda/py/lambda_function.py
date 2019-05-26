@@ -176,7 +176,7 @@ class QuizAnswerHandler(AbstractRequestHandler):
             handler_input.attributes_manager.session_attributes = attr
         else:
             speech = "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/>"
-            speech += f' The correct answer was: {attr["right"]}. '
+            speech += f' The correct answer was. {attr["right_detail"]}. '
 
         if attr['counter'] < data.MAX_QUESTIONS:
             # Ask another question
@@ -336,4 +336,5 @@ sb.add_global_response_interceptor(ResponseLogger())
 
 # Expose the lambda handler to register in AWS Lambda.
 lambda_handler = sb.lambda_handler()
+
 

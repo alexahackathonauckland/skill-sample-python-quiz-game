@@ -112,6 +112,8 @@ def ask_question(handler_input):
     answers_list = [challange["answer"], challange["w1"], challange["w2"]]
     random.shuffle(answers_list)
 
+    attr["right_detail"] = translate(challange["answer"])
+
     for j, answer in enumerate(answers_list):
         if challange["answer"] == answer:
             if j == 0:
