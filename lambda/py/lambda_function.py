@@ -164,10 +164,11 @@ class QuizAnswerHandler(AbstractRequestHandler):
         attr = handler_input.attributes_manager.session_attributes
         response_builder = handler_input.response_builder
 
-        logger.info(handler_input.request_envelope.request.intent.slots["letter"])
-        logger.info(handler_input.request_envelope.request.intent.slots["letter"].resolutions)
+        # logger.info(handler_input.request_envelope.request.intent.slots["letter"])
+        # logger.info(handler_input.request_envelope.request.intent.slots["letter"].resolutions)
         answer = handler_input.request_envelope.request.intent.slots["letter"].resolutions.resolutions_per_authority[0].values[0].value.id
         is_ans_correct = (answer == attr["right"])
+        # logger.info(f"attr: {attr}")
 
         if is_ans_correct:
             speech = "<audio src='soundbank://soundlibrary/human/amzn_sfx_crowd_applause_01'/>"
@@ -175,6 +176,7 @@ class QuizAnswerHandler(AbstractRequestHandler):
             handler_input.attributes_manager.session_attributes = attr
         else:
             speech = "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/>"
+            speech += f' The correct answer was: {attr["right"]}. '
 
         if attr['counter'] < data.MAX_QUESTIONS:
             # Ask another question
