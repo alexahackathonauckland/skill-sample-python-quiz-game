@@ -17,10 +17,10 @@ CHALLANGES = [
     },
     {
         'category': 'Animals',
-        'answer': 'uma',
+        'answer': 'uma.',
         'question': 'which of the following animals is the `Mottomo hayai`?',
-        'w2': 'kame',
-        'w1': 'ari',
+        'w2': 'kame.',
+        'w1': 'ari.',
     },
     {
         'category': 'Animals',
@@ -31,10 +31,10 @@ CHALLANGES = [
     },
     {
         'category': 'Animals',
-        'answer': 'lion',
+        'answer': 'lion.',
         'question': 'what animal has a `Juzō` in egypt?',
-        'w2': 'monkey',
-        'w1': 'giraffe',
+        'w2': 'monkey.',
+        'w1': 'giraffe.',
     },
     {
         'category': 'Animals',
@@ -52,17 +52,17 @@ CHALLANGES = [
     },
     {
         'category': 'Fruits',
-        'answer': 'watermelon',
+        'answer': 'watermelon.',
         'question': 'which `Furūtsu` has the most `Tane`?',
-        'w2': 'cherry',
-        'w1': 'banana',
+        'w2': 'cherry.',
+        'w1': 'banana.',
     },
     {
         'category': 'Fruits',
-        'answer': 'strawberry',
+        'answer': 'strawberry.',
         'question': 'The inside of this fruit is `ah ka`',
-        'w2': 'mango',
-        'w1': 'apple',
+        'w2': 'mango.',
+        'w1': 'apple.',
     },
     {
         'category': 'Fruits',
@@ -94,24 +94,24 @@ CHALLANGES = [
     },
     {
         'category': 'Colours',
-        'answer': 'red',
+        'answer': 'red.',
         'question': 'what colour is the planet `Kasei`?',
-        'w2': 'green',
-        'w1': 'purple',
+        'w2': 'green.',
+        'w1': 'purple.',
     },
     {
         'category': 'Colours',
-        'answer': 'blue',
+        'answer': 'blue.',
         'question': "What colour is donald duck's `Bōshi`?",
-        'w2': 'red',
-        'w1': 'yellow',
+        'w2': 'red.',
+        'w1': 'yellow.',
     },
     {
         'category': 'Colours',
-        'answer': 'blue',
+        'answer': 'blue.',
         'question': 'If Alice is travelling 30km per hour south at noon, and Bob is travelling 15km per hour north, `Sora no iro wa nanidesu ka?`',
-        'w2': 'yellow',
-        'w1': 'green',
+        'w2': 'yellow.',
+        'w1': 'green.',
     },
     {
         'category': 'Colours',
@@ -132,8 +132,7 @@ EXIT_SKILL_MESSAGE = ("Thank you for playing! Quiz you later! Let's play again s
 
 REPROMPT_SPEECH = "Which other state or capital would you like to know about?"
 
-HELP_MESSAGE = ("Would you like to exit the game? "
-                "Would you like to change the category?")
+HELP_MESSAGE = ("Say exit if you would like to quit the game.")
 
 MAX_QUESTIONS = 5
 
